@@ -40,6 +40,6 @@ Route::get('pay/success', [PayController::class, 'success'])->name('pay.success'
 require __DIR__.'/auth.php';
 
 //kimiwada
-Route::post('product/index', [ProductController::class, 'index'])->name('product.index');
-Route::post('product/show', [ProductController::class, 'index'])->name('product.show');
-Route::post('history/index', [HistoryController::class, 'index'])->name('history.index');
+Route::get('product/index', [ProductController::class, 'index'])->name('product.index');
+Route::get('product/show', [ProductController::class, 'index'])->name('product.show');
+Route::get('history/index', [HistoryController::class, 'index'])->name('history.index');
