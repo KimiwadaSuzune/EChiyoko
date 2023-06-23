@@ -33,9 +33,9 @@ Route::middleware('auth')->group(function () {
 });
 
 //商品購入関連
-Route::post('pay/checkout', [PayController::class, 'index'])->name('pay.index');
+Route::get('pay/checkout', [PayController::class, 'index'])->name('pay.index');
 Route::post('pay/checkout', [PayController::class, 'store'])->name('pay.store');
-Route::post('pay/success', [PayController::class, 'success'])->name('pay.success');
+Route::get('pay/success', [PayController::class, 'success'])->name('pay.success');
 
 require __DIR__.'/auth.php';
 
