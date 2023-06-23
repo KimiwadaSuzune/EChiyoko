@@ -33,7 +33,7 @@ Route::middleware('auth:users')->group(function () {
 });
 
 //商品購入関連
-Route::get('pay/checkout', [PayController::class, 'index'])->name('pay.index');
+Route::get('pay/checkout', [PayController::class, 'index'])->name('pay.checkout');
 Route::post('pay/checkout', [PayController::class, 'store'])->name('pay.store');
 Route::get('pay/success', [PayController::class, 'success'])->name('pay.success');
 
