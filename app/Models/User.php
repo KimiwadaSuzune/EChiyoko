@@ -33,6 +33,21 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+      // 多対多の場合は(中間テーブルではなく)相手のモデルを指定
+    public function products(){
+        return $this->belongsToMany(product::class, 'history')
+        ->withPivot('amount', 'purchased_at', 'total_price'); //中間テーブルの列の名前
+    }
+
+      // 多対多の場合は(中間テーブルではなく)相手のモデルを指定
+    public function product(){
+        return $this->belongsToMany(product::class, 'cart')
+        ->withPivot('amount', 'total_price'); //中間テーブルの列の名前
+    }
+
+
+
     /**
      * The attributes that should be cast.
      *
