@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+//商品購入関連
+Route::post('pay/checkout', [UploadImageController::class, 'index'])->name('pay.index');
+Route::post('pay/checkout', [UploadImageController::class, 'store'])->name('pay.store');
+Route::post('pay/success', [UploadImageController::class, 'success'])->name('pay.success');
 
 require __DIR__.'/auth.php';
