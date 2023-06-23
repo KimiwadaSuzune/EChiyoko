@@ -92,11 +92,24 @@ services:
         networks:
             - sail
     selenium:
-        image: selenium/standalone-chrome
+        image: seleniarm/standalone-chromium
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         volumes:
             - '/dev/shm:/dev/shm'
+        networks:
+            - sail
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        platform: linux/amd64
+        links:
+            - mysql:mysql
+        ports:
+            - 8080:80
+        environment:
+            # PMA_USER: "${DB_USERNAME}"
+            # PMA_PASSWORD: "${DB_PASSWORD}"
+            PMA_HOST: mysql
         networks:
             - sail
 networks:
