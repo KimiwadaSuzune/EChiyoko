@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PayController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HistoryController;
 use App\Models\History;
 use Illuminate\Support\Facades\Route;
 
