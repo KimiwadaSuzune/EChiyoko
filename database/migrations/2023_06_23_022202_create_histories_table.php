@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('product_id');
+            $table->integer('amount');
+            $table->date('purchased_at');
+            $table->integer('total_price');
             $table->timestamps();
         });
     }
