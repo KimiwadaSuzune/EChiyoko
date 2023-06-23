@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PayController;
+use App\Models\History;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +31,13 @@ Route::middleware('auth')->group(function () {
 });
 
 //商品購入関連
-Route::post('pay/checkout', [UploadImageController::class, 'index'])->name('pay.index');
-Route::post('pay/checkout', [UploadImageController::class, 'store'])->name('pay.store');
-Route::post('pay/success', [UploadImageController::class, 'success'])->name('pay.success');
+Route::post('pay/checkout', [PayController::class, 'index'])->name('pay.index');
+Route::post('pay/checkout', [PayController::class, 'store'])->name('pay.store');
+Route::post('pay/success', [PayController::class, 'success'])->name('pay.success');
 
 require __DIR__.'/auth.php';
+
+//kimiwada
+Route::post('product/index', [ProductController::class, 'index'])->name('product.index');
+Route::post('product/show', [ProductController::class, 'index'])->name('product.show');
+Route::post('history/index', [HistoryController::class, 'index'])->name('history.index');
