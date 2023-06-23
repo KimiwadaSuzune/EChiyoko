@@ -22,6 +22,22 @@ class ProductSeeder extends Seeder
                 'enabled' => true,
                 'category_id' => 1
             ],
+            [
+                'name' => '歯磨き粉',
+                'price' => '225',
+                'stock' => '99',
+                'filepass' => 'test2',
+                'enabled' => true,
+                'category_id' => 1
+            ],
+            [
+                'name' => '消臭スプレー',
+                'price' => '264',
+                'stock' => '98',
+                'filepass' => 'test3',
+                'enabled' => true,
+                'category_id' => 1
+            ],
         ]);
     }
 }
