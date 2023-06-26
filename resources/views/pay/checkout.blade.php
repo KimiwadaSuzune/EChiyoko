@@ -18,6 +18,10 @@
                         <td>{{$product_data->pivot->amount}}</td>
                     </tr>
                     @endforeach
+                    <form method="post" action="{{ route("pay.store")}}">
+                        @csrf
+                        <button type="submit" name="add">購入</button>
+                      </form>
                 </div>
             </div>
         </div>
