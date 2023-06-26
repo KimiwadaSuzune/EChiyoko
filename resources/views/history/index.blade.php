@@ -13,30 +13,39 @@
                         <thead>
                             <tr>
                                 <th class="py-2">商品名</th>
-                                <th class="py-2">価格</th>
+                                <th class="py-2">数量</th>
+                                <th class="py-2">合計金額</th>
                                 <th class="py-2">購入日時</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($histories as $history)
+                            @foreach ($products as $product)
+                                @if ($product)
                                 <tr>
-                                    <td class="py-2">
-                                        @if ($history->product)
-                                            <a href="{{ route('product.show', ['id' => $history->product->id]) }}" class="text-blue-500 hover:underline">
-                                                {{ $history->product->name }}
+                                    <td class="py-2 text-center">
+
+                                            <a href="{{ route('product.show', ['id' =>$product->id]) }}" class="text-blue-500 hover:underline">
+                                                {{ $product->name }}
                                             </a>
-                                        @else
-                                            商品情報が見つかりません
-                                        @endif
+
                                     </td>
-                                    <td class="py-2">
-                                        @if ($history->product)
-                                            ¥{{ number_format($history->product->price) }}
-                                        @endif
+                                    <td class="py-2 text-center">
+                                        {{$product->pivot->amount}}
                                     </td>
-                                    <td class="py-2">{{ $history->created_at }}</td>
+                                    <td class="py-2 text-center">
+
+                                            ¥{{ number_format($product->pivot->total_price) }}
+
+                                    </td>
+                                    <td class="py-2 text-center">
+                                        {{ $product->pivot->purchased_at }}
+                                    </td>
                                 </tr>
+                                @else
+                                    商品情報が見つかりません
+                                @endif
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
