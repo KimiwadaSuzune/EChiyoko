@@ -9,22 +9,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="mb-8">
-
+                        <h1 class="text-lg font-semibold mb-4">商品詳細</h1>
                     </div>
-                    <div>
-                        <div>
-                            @foreach ($products as $product)
-                            <a href="#" class="col-lg-4 col-md-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 <div>
-                                    <img src="{{ asset('images/' . $product->filepass) }}"/>
-                                    <div>
+                                    <img src="{{ asset('images/' . $product->filepass) }}" class="mx-auto mb-4">
+                                    <div class="text-center">
                                         <p>{{ $product->name }}</p>
-                                        <p>¥{{ number_format($product->price)}}</p>
+                                        <p>¥{{ number_format($product->price) }}</p>
                                     </div>
                                 </div>
-                            </a>
-                            @endforeach
-                        </div>
                     </div>
                 </div>
             </div>
