@@ -41,5 +41,5 @@ require __DIR__.'/auth.php';
 
 //kimiwada
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-Route::get('/product/{id}', [ProductController::class, 'index'])->name('product.show');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
