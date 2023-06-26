@@ -13,8 +13,11 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        //
+        $histories = History::all();
+
+        return view('history.index', compact('histories'));
     }
+
 
     /**
      * Show the form for creating a new resource.
