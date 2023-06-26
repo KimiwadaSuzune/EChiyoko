@@ -11,5 +11,3 @@
 </tr>
 @endforeach
 
-<x-pay-link/>
-
