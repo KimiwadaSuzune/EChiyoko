@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         // $products = Product::all();
         $products = Product::select('id', 'name', 'price')
-        ->where('enable', true)
+        ->where('enabled', true)
         ->get();
 
         return view('product.index', compact('products'));
