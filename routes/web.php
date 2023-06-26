@@ -33,13 +33,13 @@ Route::middleware('auth:users')->group(function () {
 });
 
 //商品購入関連
-Route::get('pay/checkout', [PayController::class, 'index'])->name('pay.checkout');
-Route::post('pay/checkout', [PayController::class, 'store'])->name('pay.store');
-Route::get('pay/success', [PayController::class, 'success'])->name('pay.success');
+Route::get('/pay/checkout', [PayController::class, 'index'])->name('pay.checkout');
+Route::post('/pay/checkout', [PayController::class, 'store'])->name('pay.store');
+Route::get('/pay/success', [PayController::class, 'success'])->name('pay.success');
 
 require __DIR__.'/auth.php';
 
 //kimiwada
-Route::get('product/index', [ProductController::class, 'index'])->name('product.index');
-Route::get('product/show', [ProductController::class, 'index'])->name('product.show');
-Route::get('history/index', [HistoryController::class, 'index'])->name('history.index');
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product/{id}', [ProductController::class, 'index'])->name('product.show');
+Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
