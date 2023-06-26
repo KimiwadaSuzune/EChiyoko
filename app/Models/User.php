@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Product;
 
 class User extends Authenticatable
 {
@@ -35,14 +36,14 @@ class User extends Authenticatable
 
 
       // 多対多の場合は(中間テーブルではなく)相手のモデルを指定
-    public function products(){
-        return $this->belongsToMany(product::class, 'history')
+    public function product_history(){
+        return $this->belongsToMany(Product::class, 'histories')
         ->withPivot('amount', 'purchased_at', 'total_price'); //中間テーブルの列の名前
     }
 
       // 多対多の場合は(中間テーブルではなく)相手のモデルを指定
     public function product(){
-        return $this->belongsToMany(product::class, 'cart')
+        return $this->belongsToMany(Product::class, 'carts')
         ->withPivot('amount', 'total_price'); //中間テーブルの列の名前
     }
 

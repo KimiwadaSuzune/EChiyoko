@@ -10,5 +10,5 @@ class History extends Model
     use HasFactory;
 
     // テーブル名指定
-    protected $table = 'history';
+    protected $table = 'histories';
 }

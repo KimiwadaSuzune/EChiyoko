@@ -10,5 +10,5 @@ class Cart extends Model
     use HasFactory;
 
     // テーブル名指定
-    protected $table = 'cart';
+    protected $table = 'carts';
 }
