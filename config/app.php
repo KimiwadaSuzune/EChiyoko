@@ -17,7 +17,7 @@ return [
 
     'timezone' => 'UTC',
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     'fallback_locale' => 'en',
 
