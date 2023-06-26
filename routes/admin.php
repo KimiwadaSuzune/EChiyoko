@@ -22,8 +22,8 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::get('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
-    Route::post('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::post('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::post('/category/{id}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     //管理者product
     Route::get('/product', [ProductController::class,'index'])->name('product.index');
