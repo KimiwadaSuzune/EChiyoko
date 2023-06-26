@@ -16,7 +16,7 @@
                             @foreach ($products as $product)
                             <a href="#" class="col-lg-4 col-md-6">
                                 <div>
-                                    <img src="{{ asset($product->image) }}"/>
+                                    <img src="{{ asset('images/' . $product->filepass) }}"/>
                                     <div>
                                         <p>{{ $product->name }}</p>
                                         <p>¥{{ number_format($product->price)}}</p>
