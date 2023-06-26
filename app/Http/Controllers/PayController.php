@@ -16,8 +16,8 @@ class PayController extends Controller
 {
     public function index()
     {
-        $carts = Cart::all();
-        return view('pay.checkout', compact('carts'));
+        $user = User::find(Auth::id());
+        return view('pay.checkout', compact('user'));
     }
 
     public function store(Request $request){
@@ -46,7 +46,7 @@ class PayController extends Controller
         //     $cart = Cart::where('user_id',Auth::id());
         //     $cart->get();
         //     $cart->delete();
-        //     // $cart->save();
+        //     $cart->save();
 
         // }catch(Exception $exception){       //hi登録　pro在庫減らす
         //     DB::rollback();
