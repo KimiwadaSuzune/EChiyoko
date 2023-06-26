@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('enabled');
             $table->foreignId('category_id');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
