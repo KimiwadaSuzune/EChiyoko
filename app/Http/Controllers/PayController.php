@@ -29,7 +29,7 @@ class PayController extends Controller
             // attach('相手のID',[中間テーブルに保存したい他の情報]
             // 1.CartのデータをHistoryに保存
             $user = User::find(Auth::id());
-            foreach($user->product() as $product ){
+            foreach( $user->product as $product ){
                 $user->product_history()->attach($product->id,[
                 'amount' => $product->pivot->amount,
                 'purchased_at' =>Carbon::now(),
@@ -37,12 +37,12 @@ class PayController extends Controller
                 ]);
 
                 // 2.productから在庫を減らす
-                $product = Product::find($product->id);
-                $product->stock -= $product->pivot->amount;
-                $product->save();
+                $product_data = Product::find($product->id);
+                $product_data->stock -= $product->pivot->amount;
+                $product_data->save();
 
                 //3.Cartデータ消す
-                $user->product_history()->detach($product->id);
+                $user->product()->detach($product->id);
             }
 
             DB::commit();
@@ -50,6 +50,7 @@ class PayController extends Controller
 
         }catch(Exception $exception){
             DB::rollback();
+            // return redirect(route('pay.checkout'));
         }
     }
 
