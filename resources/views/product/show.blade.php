@@ -18,6 +18,11 @@
                                 <p>{{ $product->name }}</p>
                                 <p>¥{{ number_format($product->price) }}</p>
                             </div>
+                            <div class="text-center mt-4">
+                                <a href="{{ route('pay.checkout', ['id' => $product->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    購入する
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
