@@ -21,10 +21,6 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->timestamps();
         });
-
-        Schema::table('products', function (Blueprint $table) {
-            $table->boolean('enabled')->default(true);
-        });
     }
 
     /**
