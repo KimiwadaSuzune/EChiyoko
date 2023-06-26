@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\User;
@@ -21,37 +22,37 @@ class PayController extends Controller
     }
 
     public function store(Request $request){
-    //     DB::beginTransaction();
-    //     try
-    //     {
-            //中間テーブルに追加するにはattach()
-            //attach('相手のID',[中間テーブルに保存したい他の情報]
-            //1.CartのデータをHistoryに保存
-            // $user = User::find(Auth::id());
-            // $user->product()->attach($cart->product_id, [
+        DB::beginTransaction();
+        try
+        {
+            // 中間テーブルに追加するにはattach()
+            // attach('相手のID',[中間テーブルに保存したい他の情報]
+            // 1.CartのデータをHistoryに保存
+            $user = User::find(Auth::id());
+            foreach($user->product() as $product ){
+                $user->product_history()->attach($product->id,[
+                'amount' => $product->pivot->amount,
+                'purchased_at' =>Carbon::now(),
+                'total_price' => $product->pivot->total_price,
+                ]);
 
-                // 'total_price' => product::find()->total_price,
-                // 'product_at' => product::find()->product_at,
-                // 'user_id' => user::find()->user_id,
-                // 'product_id' => product::find()->product_id,
-                // 'amount' => product::find()->amount
-            // ]);
+                // 2.productから在庫を減らす
+                $product = Product::find($product->id);
+                $product->stock -= $product->pivot->amount;
+                $product->save();
 
-            //2.productから在庫を減らす
-        //     $product = Product::find($request->product_id);
-        //     $product->stock -= $cart->amount;
-        //     $product->save();
+                //3.Cartデータ消す
+                $user->product_history()->detach($product->id);
+            }
 
-        //     //3.Cartデータ消す
-        //     $cart = Cart::where('user_id',Auth::id());
-        //     $cart->get();
-        //     $cart->delete();
-        //     $cart->save();
+            DB::commit();
+            return redirect('/pay/success');
 
-        // }catch(Exception $exception){       //hi登録　pro在庫減らす
-        //     DB::rollback();
-        // }
+        }catch(Exception $exception){
+            DB::rollback();
+        }
     }
+
 
     public function success()
     {
