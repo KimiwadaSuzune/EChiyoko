@@ -4,42 +4,58 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\User;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use Exception;
+
 
 class PayController extends Controller
 {
     public function index()
     {
         $carts = Cart::all();
-        return view('pay.index', compact('carts'));
+        return view('pay.checkout', compact('carts'));
     }
 
-//     public function store(Request $request){
-//         DB::beginTransaction();
-//         try
-//         {
-//             // 4つのテテーブル処理
-//             //中間テーブルに追加するにはattach()
-//             //attach('相手のID',[中間テーブルに保存したい他の情報]
-//             //1.purchaseHistory
-//             $cart = Cart::find(Auth::id());
-//             $cart->product()->attach($request->cart_id, [
-//                 'total_price' => product::find($request->cart_id),
-//                 'product_at' => $request->product_ad
-//                 'user_id' => $request->user_id
-//                 'amount' => $request->amount
-//             ]);
+    public function store(Request $request){
+    //     DB::beginTransaction();
+    //     try
+    //     {
+            //中間テーブルに追加するにはattach()
+            //attach('相手のID',[中間テーブルに保存したい他の情報]
+            //1.CartのデータをHistoryに保存
+            // $user = User::find(Auth::id());
+            // $user->product()->attach($cart->product_id, [
 
-//             //2.Item 在庫減らす
-//             $cart = Cart::find($request->cart_id);
-//             $cart->current_stock -= $request->amount;
-//             $item->save();
-//     }
+                // 'total_price' => product::find()->total_price,
+                // 'product_at' => product::find()->product_at,
+                // 'user_id' => user::find()->user_id,
+                // 'product_id' => product::find()->product_id,
+                // 'amount' => product::find()->amount
+            // ]);
 
-//     // public function success()
-//     // {
-//     //     // $pays = ::all();
-//     //     // return view('pay.index', compact(''));
-//     // }
-// }
+            //2.productから在庫を減らす
+        //     $product = Product::find($request->product_id);
+        //     $product->stock -= $cart->amount;
+        //     $product->save();
+
+        //     //3.Cartデータ消す
+        //     $cart = Cart::where('user_id',Auth::id());
+        //     $cart->get();
+        //     $cart->delete();
+        //     // $cart->save();
+
+        // }catch(Exception $exception){       //hi登録　pro在庫減らす
+        //     DB::rollback();
+        // }
+    }
+
+    public function success()
+    {
+        return view('pay.success');
+    }
 
 }
