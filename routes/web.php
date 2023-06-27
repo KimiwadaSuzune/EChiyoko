@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PayController;
 use App\Http\Controllers\ProductController;
@@ -38,6 +39,11 @@ Route::middleware('auth:users')->group(function () {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+
+    // cart機能
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 });
 
 require __DIR__.'/auth.php';

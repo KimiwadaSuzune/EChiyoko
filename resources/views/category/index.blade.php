@@ -1,16 +1,3 @@
-
-
-    @if (session('successMessage'))
-    <div class="alert alert-success text-center">
-    {{ session('successMessage') }}
-    @endif
-
-    @if (session('status'))
-    <div class="alert alert-success text-center">
-    {{ session('status') }}
-    @endif
-    </div>
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -26,6 +13,17 @@
                         <li><a class="text-blue-400" href="{{ route('admin.category.edit', $category->id)}}"">編集画面</a></li>
                         カテゴリ名: {{ $category->name }}<br>
                         @endforeach
+
+                        @if (session('successMessage'))
+                        <div class="alert alert-success text-center">
+                        {{ session('successMessage') }}
+                        @endif
+
+                        @if (session('status'))
+                        <div class="alert alert-success text-center">
+                        {{ session('status') }}
+                        @endif
+                        </div>
                     </div>
                 </div>
             </div>
