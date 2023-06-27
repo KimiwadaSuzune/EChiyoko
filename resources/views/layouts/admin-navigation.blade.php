@@ -17,10 +17,20 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.product.index')" :active="request()->routeIs('product.index')">
+                        {{ __('登録商品一覧') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.product.create')" :active="request()->routeIs('product.index')">
+                        {{ __('商品登録') }}
+                    </x-nav-link>
+                </div>
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.category.index')" :active="request()->routeIs('product.index')">
                         {{ __('カテゴリ一覧') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.category.create')" :active="request()->routeIs('product.index')">
                         {{ __('カテゴリ登録') }}
