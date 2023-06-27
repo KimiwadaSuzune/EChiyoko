@@ -4,21 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // $products = Product::all();
-        $products = Product::select('id', 'name', 'price')
-        ->where('enabled', true)
-        ->get();
+        $products = Product::search($request)->get();
 
-        return view('product.index', compact('products'));
+        $categories = Category::all();
+
+        return view('product.index', compact('products', 'categories'));
     }
 
     /**
