@@ -10,10 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="mb-8">
-                        <!-- 追加のコンテンツをここに配置 -->
+
                     </div>
                     <div class="text-center">
-                        <h3 class="text-lg font-semibold mb-4">登録済み商品</h3>
+                        <h3 class="text-lg font-semibold mb-4">登録済み商品一覧</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             @foreach ($products as $product)
                                 <div class="col-span-1">
