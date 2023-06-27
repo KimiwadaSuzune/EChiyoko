@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 
 class CartController extends Controller
@@ -13,54 +15,29 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $products = User::find(Auth::id());
+        return view('cart.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCartRequest $request)
     {
-        //
+        $validated = $request->validate([
+            'amount' => ['required', 'min:1', 'max:5'],
+            'total_price' => ['required'],
+        ]);
+
+        $cart = new Cart;
+        $cart->amounte = $request->amount;
+        $cart->total_price = $request->total_price;
+        $cart->save();
+
+        return redirect('/cart');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $cart)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCartRequest $request, Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cart $cart)
-    {
-        //
+        $cart = Cart::find($id);
+        $cart->delete();
+        return redirect('/cart');
     }
 }
