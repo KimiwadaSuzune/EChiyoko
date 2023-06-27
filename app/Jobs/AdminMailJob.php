@@ -9,14 +9,15 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\HiyokoMail;
+use App\Mail\AdminHiyokomail;
 
-class SendMailJob implements ShouldQueue
+class AdminMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $user;
     public $product;
+
     /**
      * Create a new job instance.
      */
@@ -24,18 +25,13 @@ class SendMailJob implements ShouldQueue
     {
         $this->user = $user;
         $this->product = $product;
-
-        // dd($this->user,$this->product);
-
     }
 
     /**
      * Execute the job.
      */
-
     public function handle(): void
     {
-        // dd($this->user,$this->product);
-        Mail::to('user@test.com')->send(new HiyokoMail($this->user,$this->product));
+        Mail::to('admin@test.com')->send(new AdminHiyokomail($this->user,$this->product));
     }
 }
