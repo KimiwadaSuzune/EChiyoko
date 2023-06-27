@@ -10,6 +10,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\SendMailJob; // ジョブを読み込む
+use App\Jobs\AdminMailJob; // ジョブを読み込む
 use Exception;
 
 
@@ -55,8 +56,12 @@ class PayController extends Controller
 
 
                     DB::commit();
+
                     // 非同期 Job を使ってメール送信
                     SendMailJob::dispatch($user->name, $user->product);
+                    // 非同期 Job を使ってメール送信
+                    AdminMailJob::dispatch($user->name, $user->product);
+                    
                     return redirect('/pay/success');
 
                 }catch(Exception $exception){
