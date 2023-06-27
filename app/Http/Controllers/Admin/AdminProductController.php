@@ -18,7 +18,7 @@ class AdminProductController extends Controller
 
         $products = Product::all();
 
-        return view('product.index', compact('products'));
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -28,7 +28,7 @@ class AdminProductController extends Controller
 //     {
 //         $categories = Category::pluck('name', 'id');
 
-//         return view('product.create', compact('categories'));
+//         return view('admin.product.create', compact('categories'));
 //     }
 
 //     public function store(Request $request)
@@ -44,7 +44,7 @@ class AdminProductController extends Controller
 
 //         Product::create($validated);
 
-//         return redirect()->route('product.index')
+//         return redirect()->route('admin.product.index')
 //             ->with('flash_message', '保存しました');
 //     }
 //     /**
@@ -53,7 +53,7 @@ class AdminProductController extends Controller
 //     public function show(string $id)
 //     {
 //         $product = Product::find($id);
-//         return view('product.show', compact('product'));
+//         return view('admin.product.show', compact('product'));
 //     }
 
 //     /**
@@ -64,7 +64,7 @@ class AdminProductController extends Controller
 //         $product = Product::findOrFail($id);
 //         $categories = Category::pluck('name', 'id');
 
-//         return view('product.edit', compact('product', 'categories'));
+//         return view('admin.product.edit', compact('product', 'categories'));
 //     }
 
 //     /**
@@ -75,7 +75,7 @@ class AdminProductController extends Controller
 //         $product = Product::findOrFail($id);
 //         $product->update($request->validated());
 
-//         return redirect()->route('product.index')
+//         return redirect()->route('admin.product.index')
 //             ->with('flash_message', '登録情報を更新しました！');
 //     }
 
@@ -87,6 +87,6 @@ class AdminProductController extends Controller
 //         $product = Product::findOrFail($id);
 //         $product->delete();
 
-//         return redirect()->route('product.index');
+//         return redirect()->route('admin.product.index');
 //     }
 }
