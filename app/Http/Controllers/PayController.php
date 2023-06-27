@@ -22,35 +22,48 @@ class PayController extends Controller
     }
 
     public function store(Request $request){
-        DB::beginTransaction();
-        try
-        {
-            // 中間テーブルに追加するにはattach()
-            // attach('相手のID',[中間テーブルに保存したい他の情報]
-            // 1.CartのデータをHistoryに保存
-            $user = User::find(Auth::id());
-            foreach( $user->product as $product ){
-                $user->product_history()->attach($product->id,[
-                'amount' => $product->pivot->amount,
-                'purchased_at' =>Carbon::now(),
-                'total_price' => $product->pivot->total_price,
-                ]);
+        $user = User::find(Auth::id());
+        if($user->product->count() > 0){
+            DB::beginTransaction();
+            try
+            {
+                // if($product->stock - $product->pivot->amount !== "0"){
 
-                // 2.productから在庫を減らす
-                $product_data = Product::find($product->id);
-                $product_data->stock -= $product->pivot->amount;
-                $product_data->save();
+                    // 中間テーブルに追加するにはattach()
+                    // attach('相手のID',[中間テーブルに保存したい他の情報]
+                    // 1.CartのデータをHistoryに保存
+                foreach( $user->product as $product ){
+                    if($product->stock - $product->pivot->amount > 0){
+                        $user->product_history()->attach($product->id,[
+                        'amount' => $product->pivot->amount,
+                        'purchased_at' =>Carbon::now(),
+                        'total_price' => $product->pivot->total_price,
+                        ]);
 
-                //3.Cartデータ消す
-                $user->product()->detach($product->id);
-            }
+                        // 2.productから在庫を減らす
+                        $product_data = Product::find($product->id);
+                        $product_data->stock -= $product->pivot->amount;
+                        $product_data->save();
 
-            DB::commit();
-            return redirect('/pay/success');
+                        //3.Cartデータ消す
+                        $user->product()->detach($product->id);
+                    }
+                    else{
+                        continue;
+                    }
+                }
 
-        }catch(Exception $exception){
-            DB::rollback();
-            // return redirect(route('pay.checkout'));
+
+                    DB::commit();
+                    return redirect('/pay/success');
+
+                }catch(Exception $exception){
+                    DB::rollback();
+                    // return redirect(route('pay.checkout'));
+                }
+        }
+        else{
+            return redirect("product")->with('status', 'カートの中身が空です');
         }
     }
 

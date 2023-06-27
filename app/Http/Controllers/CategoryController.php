@@ -67,7 +67,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect('admin/category')->with('status', '問題なく更新されました');;
+        return redirect('admin/category')->with('status', '問題なく更新されました');
     }
 
 
