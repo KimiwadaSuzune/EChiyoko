@@ -27,9 +27,17 @@
                                                 <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}"class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                                     編集
                                                 </a>
+                                                <form id="update-form" action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    @method('PUT')
+                                                </form>
                                                 <a href="{{ route('admin.product.destroy', ['id' => $product->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                                     削除
                                                 </a>
+                                                <form id="delete-form" action="{{ route('admin.product.destroy', ['id' => $product->id]) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
                                             </div>
                                         </div>
                                     </a>

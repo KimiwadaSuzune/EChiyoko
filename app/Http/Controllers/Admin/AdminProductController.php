@@ -31,62 +31,67 @@ class AdminProductController extends Controller
         return view('admin.product.create', compact('categories'));
     }
 
-//     public function store(Request $request)
-//     {
-//         $validated = $request->validate([
-//             'name' => ['required', 'min:2', 'max:50'],
-//             'price' => ['required'],
-//             'stock' => ['required'],
-//             'filepass' => ['required'],
-//             'enabled' => ['required', 'boolean'],
-//             'category_id' => ['required']
-//         ]);
+    public function store(Request $request)
+    {
 
-//         Product::create($validated);
 
-//         return redirect()->route('admin.product.index')
-//             ->with('flash_message', '保存しました');
-//     }
-//     /**
-//      * Display the specified resource.
-//      */
-//     public function show(string $id)
-//     {
-//         $product = Product::find($id);
-//         return view('admin.product.show', compact('product'));
-//     }
+        $validated = $request->validate([
+            'name' => ['required', 'min:2', 'max:50'],
+            'price' => ['required'],
+            'stock' => ['required'],
+            'filepass' => ['required'],
+            'enabled' => ['required', 'boolean'],
+            'category_id' => ['required']
+        ]);
 
-//     /**
-//      * Show the form for editing the specified resource.
-//      */
-//     public function edit(string $id)
-//     {
-//         $product = Product::findOrFail($id);
-//         $categories = Category::pluck('name', 'id');
+        $img = $request->file('filepath');
+        $path = $img->store('img','public');
 
-//         return view('admin.product.edit', compact('product', 'categories'));
-//     }
+        Product::create($validated);
 
-//     /**
-//      * Update the specified resource in storage.
-//      */
-//     public function update(UpdateProductRequest $request, Product $product,$id)
-//     {
-//         $product = Product::findOrFail($id);
-//         $product->update($request->validated());
+        return redirect()->route('admin.product.index')
+            ->with('flash_message', '保存しました');
+    }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $product = Product::find($id);
+        return view('admin.product.show', compact('product'));
+    }
 
-//         return redirect()->route('admin.product.index')
-//             ->with('flash_message', '登録情報を更新しました！');
-//     }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::pluck('name', 'id');
 
-//     /**
-//      * Remove the specified resource from storage.
-//      */
-//     public function destroy($id)
-//     {
-//         $product = Product::findOrFail($id);
-//         $product->delete();
+        return view('admin.product.edit', compact('product', 'categories'));
+    }
 
-//         return redirect()->route('admin.product.index');
-//     }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateProductRequest $request, Product $product,$id)
+    {
+        $product = Product::findOrFail($id);
+        $product->update($request->validated());
+
+        return redirect()->route('admin.product.index')
+            ->with('flash_message', '登録情報を更新しました！');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('admin.product.index');
+    }
 }
