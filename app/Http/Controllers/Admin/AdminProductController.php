@@ -34,21 +34,27 @@ class AdminProductController extends Controller
     public function store(Request $request)
     {
 
+        // $validated = $request->validate([
+        //     'name' => ['required', 'min:2', 'max:50'],
+        //     'price' => ['required'],
+        //     'stock' => ['required'],
+        //     'filepass' => ['required'],
+        //     'enabled' => ['required', 'boolean'],
+        //     'category_id' => ['required']
+        // ]);
 
-        $validated = $request->validate([
-            'name' => ['required', 'min:2', 'max:50'],
-            'price' => ['required'],
-            'stock' => ['required'],
-            'filepass' => ['required'],
-            'enabled' => ['required', 'boolean'],
-            'category_id' => ['required']
-        ]);
-
-        $img = $request->file('filepath');
+        $img = $request->filepath;
         $path = $img->store('img','public');
 
-        Product::create($validated);
+        $product = new Product;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->filepass = $path;
+        $product->enabled = $request->enabled;
+        $product->category_id = $request->category_id;
+        $product->save();
 
+        dd($request);
         return redirect()->route('admin.product.index')
             ->with('flash_message', '保存しました');
     }
