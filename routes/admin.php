@@ -30,10 +30,10 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/product', [AdminProductController::class,'index'])->name('product.index');
     Route::post('/product', [AdminProductController::class,'store'])->name('product.store');
     Route::get('/product/create', [AdminProductController::class, 'create'])->name('product.create');
-    Route::get('/product/{product_id}/show',[AdminProductController::class,'show'])->name('product.show');
-    Route::get('/product/{product_id}/edit', [AdminProductController::class,'edit'])->name('product.edit');
-    Route::put('/product/{product_id}',[AdminProductController::class,'update'])->name('product.update');
-    Route::delete('/product/{product_id}', [AdminProductController::class,'destroy'])->name('product.destroy');
+    Route::get('/product/{id}/show',[AdminProductController::class,'show'])->name('product.show');
+    Route::get('/product/{id}/edit', [AdminProductController::class,'edit'])->name('product.edit');
+    Route::put('/product/{id}',[AdminProductController::class,'update'])->name('product.update');
+    Route::delete('/product/{id}', [AdminProductController::class,'destroy'])->name('product.destroy');
 });
 
 require __DIR__.'/adminAuth.php';
