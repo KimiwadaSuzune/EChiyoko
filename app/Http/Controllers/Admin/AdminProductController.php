@@ -24,12 +24,12 @@ class AdminProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-//     public function create()
-//     {
-//         $categories = Category::pluck('name', 'id');
+    public function create()
+    {
+        $categories = Category::pluck('name', 'id');
 
-//         return view('admin.product.create', compact('categories'));
-//     }
+        return view('admin.product.create', compact('categories'));
+    }
 
 //     public function store(Request $request)
 //     {
