@@ -16,7 +16,7 @@
                             <img src="{{ asset('images/' . $product->filepass) }}" class="mx-auto mb-4">
                             <div class="text-center">
                                 <p>{{ $product->name }}</p>
-                                <p>カテゴリ{{ $product->categories->name }}</p>
+                                <p>カテゴリ{{ $product->category->name }}</p>
                                 <p>価格：¥{{ number_format($product->price) }}</p>
                                 @if($product->enabled)
                                     <p>表示・非表示：表示</p>

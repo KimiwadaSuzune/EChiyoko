@@ -16,6 +16,7 @@
                             <img src="{{ asset('images/' . $product->filepass) }}" class="mx-auto mb-4">
                             <div class="text-center">
                                 <p>{{ $product->name }}</p>
+                                
                                 <p>¥{{ number_format($product->price) }}</p>
                             </div>
 
@@ -25,7 +26,7 @@
                                     <button value="保存"  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カート挿入</button>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
