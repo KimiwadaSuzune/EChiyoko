@@ -11,11 +11,10 @@
                     <div class="mb-8"></div>
                     <form action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST">
                         @csrf
-                        @method('DELETE')
 
                         <div>
                             <label for="category_id">商品名:</label>
-                            <select name="category_id" id="category_id" required>
+                            <select name="category_id" id="category_id" min="0" required>
                                 <option value="">選択してください</option>
                                     <option value="{{ $product->id }}" {{ $product->id == $product->category_id ? 'selected' : '' }}>
                                         {{ $product->name }}
@@ -25,12 +24,12 @@
 
                         <div>
                             <label for="price">金額:</label>
-                            <input type="number" name="price" id="price" value="{{ $product->price }}" required>
+                            <input type="number" name="price" id="price" value="{{ $product->price }}" min="0" required>
                         </div>
 
                         <div>
                             <label for="stock">在庫:</label>
-                            <input type="number" name="stock" id="stock" value="{{ $product->stock }}" required>
+                            <input type="number" name="stock" id="stock" value="{{ $product->stock }}" min="0" required>
                         </div>
 
                         <div>

@@ -14,29 +14,29 @@
                     <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
-                            <label for="image">画像:</label>
-                            <input type="file" name="filepass" id="filepass" required>
-                            <button type="submit">アップロードする</button>
+                            <label>画像:</label>
+                            <input type="file" name="img" id="img" required>
                         </div>
 
                         <div>
                             <label for="name">商品名:</label>
-                            <input type="text" name="name" id="name" required>
+                            <input type="text" name="name" id="name" min="2" max="100" required>
                         </div>
 
                         <div>
                             <label for="price">金額:</label>
-                            <input type="number" name="price" id="price" required>
+                            <input type="number" name="price" id="price" min="0" required>
                         </div>
 
                         <div>
                             <label for="stock">在庫:</label>
-                            <input type="number" name="stock" id="stock" required>
+                            <input type="number" name="stock" id="stock" min="0"required>
                         </div>
 
                         <div>
-                            <label for="enabled">表示する:</label>
-                            <input type="checkbox" name="enabled" id="enabled">
+                            <label for="enabled">表示・非表示:</label>
+                            <input type="checkbox" name="enabled" id="enabled" value="1" {{ old('enabled') ? 'checked="checked"' : '' }}>
+
                         </div>
 
                         <div>
