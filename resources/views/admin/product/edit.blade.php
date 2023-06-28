@@ -14,8 +14,13 @@
                         @method('DELETE')
 
                         <div>
-                            <label for="name">商品名:</label>
-                            <input type="text" name="name" id="name" value="{{ $product->name }}" required>
+                            <label for="category_id">商品名:</label>
+                            <select name="category_id" id="category_id" required>
+                                <option value="">選択してください</option>
+                                    <option value="{{ $product->id }}" {{ $product->id == $product->category_id ? 'selected' : '' }}>
+                                        {{ $product->name }}
+                                    </option>
+                            </select>
                         </div>
 
                         <div>
@@ -40,7 +45,7 @@
 
                         <div>
                             <label for="category_id">カテゴリー:</label>
-                            <select name="category_id" id="category_id" required>
+                            <select name="category_id" id="category_name" required>
                                 <option value="">選択してください</option>
                                 @foreach ($categories as $categoryId => $categoryName)
                                     <option value="{{ $categoryId }}" {{ $product->category_id == $categoryId ? 'selected' : '' }}>
@@ -59,4 +64,6 @@
         </div>
     </div>
 </x-app-layout>
+
+
 

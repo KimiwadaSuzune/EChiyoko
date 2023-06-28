@@ -15,7 +15,6 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-
         $products = Product::all();
 
         return view('admin.product.index', compact('products'));
@@ -33,16 +32,6 @@ class AdminProductController extends Controller
 
     public function store(Request $request)
     {
-
-        // $validated = $request->validate([
-        //     'name' => ['required', 'min:2', 'max:50'],
-        //     'price' => ['required'],
-        //     'stock' => ['required'],
-        //     'filepass' => ['required'],
-        //     'enabled' => ['required', 'boolean'],
-        //     'category_id' => ['required']
-        // ]);
-
         $img = $request->filepath;
         $path = $img->store('img','public');
 
@@ -54,10 +43,10 @@ class AdminProductController extends Controller
         $product->category_id = $request->category_id;
         $product->save();
 
-        dd($request);
         return redirect()->route('admin.product.index')
             ->with('flash_message', '保存しました');
     }
+
     /**
      * Display the specified resource.
      */
@@ -70,21 +59,37 @@ class AdminProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    // public function edit(string $id)
+    // {
+    //     $product = Product::findOrFail($id);
+    //     $categories = Category::pluck('name', 'id');
+
+    //     return view('admin.product.edit', compact('product', 'categories'));
+    // }
+
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
+        $products = Product::all();
         $categories = Category::pluck('name', 'id');
 
-        return view('admin.product.edit', compact('product', 'categories'));
+        return view('admin.product.edit', compact('product', 'products', 'categories'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product,$id)
+    public function update(UpdateProductRequest $request, Product $product, $id)
     {
         $product = Product::findOrFail($id);
-        $product->update($request->validated());
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->filepass = $request->filepass;
+        $product->enabled = $request->enabled;
+        $product->category_id = $request->category_id;
+        $product->save();
 
         return redirect()->route('admin.product.index')
             ->with('flash_message', '登録情報を更新しました！');
@@ -94,10 +99,11 @@ class AdminProductController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
-        $product = Product::findOrFail($id);
-        $product->delete();
+{
+    $product = Product::findOrFail($id);
+    $product->destroy($id);
 
-        return redirect()->route('admin.product.index');
-    }
+    return redirect()->route('admin.product.index');
+}
+
 }
