@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
                 'name' => 'トイレットペーパー',
                 'price' => '564',
                 'stock' => '100',
-                'filepass' => 'test1',
+                'filepass' => 'test1.jpg',
                 'enabled' => true,
                 'category_id' => 1
             ],
@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 'name' => '歯磨き粉',
                 'price' => '225',
                 'stock' => '99',
-                'filepass' => 'test2',
+                'filepass' => 'test2.jpg',
                 'enabled' => true,
                 'category_id' => 1
             ],
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
                 'name' => '消臭スプレー',
                 'price' => '264',
                 'stock' => '98',
-                'filepass' => 'test3',
+                'filepass' => 'test3.jpg',
                 'enabled' => true,
                 'category_id' => 1
             ],
