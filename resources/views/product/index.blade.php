@@ -51,7 +51,7 @@
                         <div class="col-span-1">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
                                 <div class="bg-white rounded-lg shadow-md">
-                                    <img src="{{ asset('img/' . $product->filepass) }}" alt="{{ $product->name }}" class="mx-auto my-4 w-32 h-32 object-cover">
+                                    <img src="{{ asset($product->filepass) }}" alt="{{ $product->name }}" class="mx-auto my-4 w-32 h-32 object-cover">
                                     <div class="p-4">
                                         <p class="text-sm">{{ $product->name }}</p>
                                         <p class="text-sm">¥{{ number_format($product->price) }}</p>

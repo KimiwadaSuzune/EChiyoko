@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div>
-                        <label for="">カテゴリ名</label>
+                        <label>カテゴリ名</label>
                         <input type="text" id="name" name="name" value="{{ old('name')}}">
                     </div>
                     <div>
