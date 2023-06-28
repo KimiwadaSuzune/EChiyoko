@@ -95,7 +95,7 @@ class AdminProductController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->stock = $request->stock;
-        $product->filepass = $request->filepass;
+        $product->filepass = "a";
         $product->enabled = $request->enabled;
         $product->category_id = $request->category_id;
         $product->save();

@@ -21,6 +21,7 @@
                                         <div class="bg-white rounded-lg shadow-md">
                                             {{-- <img src="{{ asset($product->filepass) }}" alt="{{ $product->name }}" class="mx-auto my-4 w-32 h-32 object-cover"> --}}
                                             <div class="p-4">
+                                                <img src="{{ asset($product->filepass) }}" alt="{{ $product->name }}" class="mx-auto my-4 w-32 h-32 object-cover">
                                                 <p class="text-sm">{{ $product->name }}</p>
                                                 <p class="text-sm">¥{{ number_format($product->price) }}</p>
                                                 <p class="text-sm">在庫数：{{ number_format($product->stock) }}</p>
