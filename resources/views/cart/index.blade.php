@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($products->product as $product)
+                            @foreach($user->product as $product)
                                 <tr>
                                     <td class="py-2 text-center">
                                         {{ $product->name }}
@@ -44,7 +44,8 @@
                                 </tr>
                             @endforeach
 
-                            @if ($products->count() > 0)
+                            @if ($user->product->count() > 0)
+                            {{-- {{ var_dump($products)}} --}}
                             <td class="py-2 text-center">
                                 <a href="{{ route('pay.checkout') }}" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
                                     <button>購入</button>
