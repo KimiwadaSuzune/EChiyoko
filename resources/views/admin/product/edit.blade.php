@@ -8,44 +8,46 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="mb-8">
-
-                    </div>
-                    <form action="{{ route('admin.product.update') }}" method="POST">
+                    <div class="mb-8"></div>
+                    <form action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST">
                         @csrf
+                        @method('DELETE')
 
                         <div>
                             <label for="name">商品名:</label>
-                            <input type="text" name="name" id="name" required>
+                            <input type="text" name="name" id="name" value="{{ $product->name }}" required>
                         </div>
 
                         <div>
                             <label for="price">金額:</label>
-                            <input type="number" name="price" id="price" required>
+                            <input type="number" name="price" id="price" value="{{ $product->price }}" required>
                         </div>
 
                         <div>
                             <label for="stock">在庫:</label>
-                            <input type="number" name="stock" id="stock" required>
+                            <input type="number" name="stock" id="stock" value="{{ $product->stock }}" required>
                         </div>
 
                         <div>
-                            <label for="image">画像パス:</label>
-                            <input type="text" name="image" id="image" required>
+                            <label for="image">画像:</label>
+                            <input type="image" name="image" id="image" value="{{ $product->image }}" required>
                         </div>
 
                         <div>
                             <label for="enabled">表示・非表示:</label>
-                            <input type="checkbox" name="enabled" id="enabled" required>
+                            <input type="checkbox" name="enabled" id="enabled" {{ $product->enabled ? 'checked' : '' }} required>
                         </div>
 
                         <div>
                             <label for="category_id">カテゴリー:</label>
                             <select name="category_id" id="category_id" required>
                                 <option value="">選択してください</option>
-                            @foreach ($categories as $categoryId => $categoryName)
-                                    <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                @foreach ($categories as $categoryId => $categoryName)
+                                    <option value="{{ $categoryId }}" {{ $product->category_id == $categoryId ? 'selected' : '' }}>
+                                        {{ $categoryName }}
+                                    </option>
                                 @endforeach
+                            </select>
                         </div>
 
                         <div>
