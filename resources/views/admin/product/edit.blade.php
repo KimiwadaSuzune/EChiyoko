@@ -11,36 +11,37 @@
                     <div class="mb-8"></div>
                     <form action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST">
                         @csrf
-                        @method('DELETE')
 
                         <div>
                             <label for="category_id">商品名:</label>
-                            <select name="category_id" id="category_id" required>
+                            {{-- <select name="name" id="name" min="0" required>
                                 <option value="">選択してください</option>
                                     <option value="{{ $product->id }}" {{ $product->id == $product->category_id ? 'selected' : '' }}>
                                         {{ $product->name }}
                                     </option>
-                            </select>
+                            </select> --}}
+                            <input type="text" id="name" name="name" value="{{ $product->name }}">
                         </div>
 
                         <div>
                             <label for="price">金額:</label>
-                            <input type="number" name="price" id="price" value="{{ $product->price }}" required>
+                            <input type="number" name="price" id="price" value="{{ $product->price }}" min="0" required>
                         </div>
 
                         <div>
                             <label for="stock">在庫:</label>
-                            <input type="number" name="stock" id="stock" value="{{ $product->stock }}" required>
+                            <input type="number" name="stock" id="stock" value="{{ $product->stock }}" min="0" required>
                         </div>
 
                         <div>
-                            <label for="image">画像:</label>
-                            <input type="image" name="image" id="image" value="{{ $product->image }}" required>
+                            <label for="filepass">画像:</label>
+                            <input type="image" name="filepass" id="filepass" value="{{ $product->filepass }}" required>
                         </div>
 
                         <div>
                             <label for="enabled">表示・非表示:</label>
-                            <input type="checkbox" name="enabled" id="enabled" {{ $product->enabled ? 'checked' : '' }} required>
+                            <input type="checkbox" name="enabled" id="enabled" value="1" {{ $product->enabled ? 'checked="checked"' : '' }}>
+
                         </div>
 
                         <div>
