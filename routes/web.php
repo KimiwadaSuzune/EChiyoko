@@ -42,8 +42,8 @@ Route::middleware('auth:users')->group(function () {
 
     // cart機能
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-    Route::post('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::post('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 });
 
 require __DIR__.'/auth.php';

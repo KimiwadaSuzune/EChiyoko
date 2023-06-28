@@ -37,11 +37,20 @@
                                     <td class="py-2 text-center">
                                         <form method="post" action="{{ route("cart.destroy", $product->id)}}">
                                             @csrf
-                                            <input type="submit" value="削除" onclick='return confirm("本当に削除しますか？")'>
+                                            <button value="削除" onclick='return confirm("本当に削除しますか？")' class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">削除</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
+
+                            @if ($products->count() < 0)
+                            <td class="py-2 text-center">
+                                <a href="{{ route('pay.checkout') }}" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
+                                    <button>購入</button>
+                                </a></br>
+                            </td>
+                            @endif
+                            
                         </tbody>
                     </table>
                 </div>

@@ -27,6 +27,12 @@ class CartSeeder extends Seeder
                 'total_price' => 2000,
             ],
             [
+                'user_id' => 2,
+                'product_id' => 1,
+                'amount' => 3,
+                'total_price' => 1111,
+            ],
+            [
                 'user_id' => 3,
                 'product_id' => 3,
                 'amount' => 3,

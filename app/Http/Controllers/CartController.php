@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCartRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -19,16 +20,20 @@ class CartController extends Controller
         return view('cart.index', compact('products'));
     }
 
-    public function store(StoreCartRequest $request)
+    public function store(StoreCartRequest $request, $id)
     {
-        $validated = $request->validate([
-            'amount' => ['required', 'min:1', 'max:5'],
-            'total_price' => ['required'],
-        ]);
+        // $validated = $request->validate([
+        //     'amount' => ['required', 'min:1', 'max:5'],
+        //     'total_price' => ['required'],
+        // ]);
+
+        $product = Product::find($id);
 
         $cart = new Cart;
-        $cart->amounte = $request->amount;
-        $cart->total_price = $request->total_price;
+        $cart->user_id = Auth::id();
+        $cart->product_id = $id;
+        $cart->amount = 1;
+        $cart->total_price = $product->price;
         $cart->save();
 
         return redirect('/cart');

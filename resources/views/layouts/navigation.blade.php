@@ -26,11 +26,11 @@
                         {{ __('購入履歴') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('pay.checkout')" :active="request()->routeIs('pay.checkout')">
                         {{ __('購入') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
                         {{ __('カート') }}
