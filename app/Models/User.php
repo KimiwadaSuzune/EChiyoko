@@ -44,7 +44,7 @@ class User extends Authenticatable
       // 多対多の場合は(中間テーブルではなく)相手のモデルを指定
     public function product(){
         return $this->belongsToMany(Product::class, 'carts')
-        ->withPivot('amount', 'total_price'); //中間テーブルの列の名前
+        ->withPivot('amount', 'total_price', 'id'); //中間テーブルの列の名前
     }
 
 

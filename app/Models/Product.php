@@ -32,14 +32,14 @@ class Product extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'history')
+        return $this->belongsToMany(User::class, 'histoies')
         ->withPivot('amount', 'purchased_at', 'total_price');
     }
 
     public function user_carts()
     {
-        return $this->belongsToMany(User::class, 'cart')
-        ->withPivot('amount', 'total_price');
+        return $this->belongsToMany(User::class, 'carts')
+        ->withPivot('amount', 'total_price', 'id');
     }
 
 
