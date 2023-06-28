@@ -16,6 +16,7 @@
                         <div>
                             <label for="image">画像:</label>
                             <input type="file" name="filepass" id="filepass" required>
+                            <button type="submit">アップロードする</button>
                         </div>
 
                         <div>
@@ -34,7 +35,7 @@
                         </div>
 
                         <div>
-                            <label for="enabled">表示・非表示:</label>
+                            <label for="enabled">表示する:</label>
                             <input type="checkbox" name="enabled" id="enabled">
                         </div>
 
