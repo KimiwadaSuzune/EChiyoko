@@ -19,7 +19,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $sumPrice = 0;
+                            @endphp
                             @foreach($user->product as $product_data)
+                            @php
+                                 $sumPrice += $product_data->pivot->total_price
+                            @endphp
+
                             <tr>
                                 <td class="py-2 text-center">
                                     {{$product_data->name}}
@@ -34,6 +41,8 @@
                                 </td>
                             </tr>
                             @endforeach
+                            カート内の合計：￥{{$sumPrice}}
+
                             <td class="py-2 text-center">
                                 <form method="post" action="{{ route("pay.store")}}">
                                     @csrf
