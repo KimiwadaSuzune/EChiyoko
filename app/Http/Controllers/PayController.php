@@ -61,13 +61,14 @@ class PayController extends Controller
                     SendMailJob::dispatch($user->name, $user->product);
                     // 非同期 Job を使ってメール送信
                     AdminMailJob::dispatch($user->name, $user->product);
-                    
+
                     return redirect('/pay/success');
 
-                }catch(Exception $exception){
+            }catch(Exception $exception){
                     DB::rollback();
+
                     // return redirect(route('pay.checkout'));
-                }
+             }
         }
         else{
             return redirect("product")->with('status', 'カートの中身が空です');

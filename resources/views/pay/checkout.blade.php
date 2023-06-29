@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h1 class="text-lg font-semibold mb-4">購入画面</h1>
+                    <h1 class="text-lg font-semibold mb-4">購入確認画面</h1>
                     <table class="w-full">
                         <thead>
                             <tr>

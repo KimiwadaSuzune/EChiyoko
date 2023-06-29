@@ -18,12 +18,23 @@
                                 <p>{{ $product->name }}</p>
                                 
                                 <p>¥{{ number_format($product->price) }}</p>
-                            </div>
+                                {{-- <div class="col-sm-3">
+                                    <select name="category" class="form-control">
+                                        <option value="">未選択</option>
+
+                                        @for ($i = 1; $i <= 100; $i++)
+                                        <option value="{{ $category->id }}">
+                                        {{ $category->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    </div>
+                            </div> --}}
 
                             <div class="text-center mt-4">
                                 <form method="post" action="{{ route('cart.store', $product->id) }}" >
                                     @csrf
-                                    <button value="保存"  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カート挿入</button>
+                                    <button value="保存"  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに入れる</button>
                                 </form>
                             </div>
 
