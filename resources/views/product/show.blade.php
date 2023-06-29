@@ -16,24 +16,19 @@
                             <img src="{{ asset('images/' . $product->filepass) }}" class="mx-auto mb-4">
                             <div class="text-center">
                                 <p>{{ $product->name }}</p>
-                                
-                                <p>¥{{ number_format($product->price) }}</p>
-                                {{-- <div class="col-sm-3">
-                                    <select name="category" class="form-control">
-                                        <option value="">未選択</option>
 
-                                        @for ($i = 1; $i <= 100; $i++)
-                                        <option value="{{ $category->id }}">
-                                        {{ $category->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    </div>
-                            </div> --}}
+                                <p>¥{{ number_format($product->price) }}</p>
+
 
                             <div class="text-center mt-4">
                                 <form method="post" action="{{ route('cart.store', $product->id) }}" >
                                     @csrf
+                                      <label for="amount">個数:</label>
+                                        <select id="amount" name="amount">
+                                            @for ($i = 1; $i <= 100; $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
                                     <button value="保存"  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに入れる</button>
                                 </form>
                             </div>
