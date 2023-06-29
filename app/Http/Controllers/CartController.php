@@ -24,7 +24,7 @@ class CartController extends Controller
     public function store(StoreCartRequest $request, $id)
     {
         // $validated = $request->validate([
-        //     'amount' => ['required', 'min:1', 'max:5'],
+        //     'amount' => ['required'],
         //     'total_price' => ['required'],
         // ]);
 
@@ -36,7 +36,6 @@ class CartController extends Controller
         $cart->amount = $request->input('amount');
         $cart->total_price = $cart->amount * $product->price;
         $cart->save();
-
         return redirect('/cart');
     }
 

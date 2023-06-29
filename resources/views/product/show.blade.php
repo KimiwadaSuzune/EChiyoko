@@ -28,20 +28,25 @@
                                         </select>
                                         <br>
                                     </form>
-                                    <div style="padding-top:10px;">
-                                        <button value="保存"  class="text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに入れる</button>
-                                    </div>
+                                    <form method="post" action="{{ route('cart.store', $product->id) }}" >
+                                        @csrf
+                                        <input type="hidden" name="amount" value="1">
+                                        <div style="padding-top:20px;">
+                                            <button type="submit" class="text-white bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-500 rounded">カートに入れる</button>
+                                        </div>
+                                    </form>
+
                                 </div>
 
 
                                 <div class="text-right">
-                                    <button type="button" onclick="history.back()" class=" text-white bg-teal-400 border-0 py-2 px-6 hover:bg-teal-600 rounded">一覧に戻る</button>
+                                    <button type="button" onclick="history.back()" class=" text-white bg-teal-500 border-0 py-2 px-6 hover:bg-teal-600 rounded">一覧に戻る</button>
                                 </div>
                                 <br>
                                 <div class="text-right">
                                     <form method="get" action="{{ route('cart.index')}}" >
                                         @csrf
-                                        <button value=""  class=" text-white bg-teal-400 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに戻る</button>
+                                        <button value=""  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに戻る</button>
                                     </form>
                                 </div>
                             </div>
