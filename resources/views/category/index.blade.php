@@ -8,23 +8,30 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div>
-                        @foreach($categorys as $category)
-                        <li><a class="text-blue-400" href="{{ route('admin.category.edit', $category->id)}}"">編集画面</a></li>
-                        カテゴリ名: {{ $category->name }}<br>
-                        @endforeach
+                    <table class="w-full">
+                        <thead>
+                            <tr>
+                                <th class="py-2">カテゴリ名</th>
+                                <th class="py-2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-2 text-center">
+                                    @foreach($categorys as $category)
+                                    {{ $category->name }}<br>
+                                    @endforeach
+                                </td>
 
-                        @if (session('successMessage'))
-                        <div class="alert alert-success text-center">
-                        {{ session('successMessage') }}
-                        @endif
-
-                        @if (session('status'))
-                        <div class="alert alert-success text-center">
-                        {{ session('status') }}
-                        @endif
-                        </div>
-                    </div>
+                                <td class="py-2 text-center">
+                                    @foreach($categorys as $category)
+                                    <a href="{{ route('admin.category.edit', $category->id)}}" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
+                                    <button>編集</button></a>
+                                    @endforeach
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
