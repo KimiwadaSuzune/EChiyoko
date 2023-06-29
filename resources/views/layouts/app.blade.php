@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-         <div class="style="background-image: url('/images/hiyokobg.png'); background-repeat: repeat;">
+        <body class="font-sans antialiased" style="background-image: url('/images/hiyokobg.png'); background-repeat: repeat;">
             @if(request()->is('admin*'))
                 @include('layouts.admin-navigation')
             @else
