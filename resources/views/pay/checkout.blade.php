@@ -24,7 +24,7 @@
                             @endphp
                             @foreach($user->product as $product_data)
                             @php
-                                 $sumPrice += $product_data->pivot->total_price
+                                $sumPrice += $product_data->pivot->total_price
                             @endphp
 
                             <tr>
