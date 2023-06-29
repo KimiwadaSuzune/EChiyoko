@@ -24,31 +24,42 @@
                             @endphp
                             @foreach($user->product as $product_data)
                             @php
-                                 $sumPrice += $product_data->pivot->total_price
+                                $sumPrice += $product_data->pivot->total_price
                             @endphp
 
-                            <tr>
-                                <td class="py-2 text-center">
+                            <tr >
+                                <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172)">
                                     {{$product_data->name}}
                                 </td>
 
-                                <td class="py-2 text-center">
+                                <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172)">
                                     {{$product_data->pivot->amount}}
                                 </td>
 
-                                <td class="py-2 text-center">
+                                <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172)">
                                     {{$product_data->pivot->total_price}}
+                                </td>
+                                <td class="py-2 text-center">
                                 </td>
                             </tr>
                             @endforeach
-                            カート内の合計：￥{{$sumPrice}}
 
-                            <td class="py-2 text-center">
-                                <form method="post" action="{{ route("pay.store")}}">
-                                    @csrf
-                                    <button type="submit" name="add" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">購入</button>
-                                </form>
-                            </td>
+                            <tr>
+                                <td colspan="3" class="py-2 text-right font-semibold">
+                                    カートの合計金額：￥{{ $sumPrice }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="py-2 text-center">
+                                    <div class="flex justify-end">
+                                        <form method="post" action="{{ route('pay.store') }}">
+                                            @csrf
+                                            <button type="submit" name="add" class="text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">商品を購入する</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

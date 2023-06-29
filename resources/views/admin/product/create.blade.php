@@ -8,51 +8,56 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="mb-8">
-
-                    </div>
+                    <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="py-2">画像</th>
+                            <th class="py-2 ">商品名</th>
+                            <th class="py-2">金額</th>
+                            <th class="py-2">在庫</th>
+                            <th class="py-2">表示</th>
+                            <th class="py-2">カテゴリ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="cart">
                     <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div>
-                            <label>画像:</label>
+                        <td class="py-2">
                             <input type="file" name="img" id="img" required>
-                        </div>
+                        </td>
 
-                        <div>
-                            <label for="name">商品名:</label>
+                        <td class="py-2">
                             <input type="text" name="name" id="name" min="2" max="100" required>
-                        </div>
+                        </td>
 
-                        <div>
-                            <label for="price">金額:</label>
+                        <td class="py-2">
                             <input type="number" name="price" id="price" min="0" required>
-                        </div>
+                        </td>
 
-                        <div>
-                            <label for="stock">在庫:</label>
+                        <td class="py-2">
                             <input type="number" name="stock" id="stock" min="0"required>
-                        </div>
+                        </td>
 
-                        <div>
-                            <label for="enabled">表示・非表示:</label>
+                        <td class="py-2 flex justify-center">
                             <input type="checkbox" name="enabled" id="enabled" value="1" {{ old('enabled') ? 'checked="checked"' : '' }}>
+                        </td>
 
-                        </div>
-
-                        <div>
-                            <label for="category_id">カテゴリー:</label>
+                        <td class="py-2">
                             <select name="category_id" id="category_id" required>
                                 <option value="">選択してください</option>
                                 @foreach ($categories as $categoryId => $categoryName)
                                     <option value="{{ $categoryId }}">{{ $categoryName }}</option>
                                 @endforeach
                             </select>
-                        </div>
-
-                        <div>
-                            <button type="submit">商品を保存</button>
-                        </div>
+                        </td>
+                    </tr>
+                    <td class="text-center">
+                            <button type="submit" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">商品を保存</button>
+                        </td>
                     </form>
+                </tbody>
+                </table>
                 </div>
             </div>
         </div>

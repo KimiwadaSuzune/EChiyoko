@@ -27,19 +27,21 @@
                                             @endfor
                                         </select>
                                         <br>
-                                        <button value="保存"  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カート挿入</button>
                                     </form>
+                                    <div style="padding-top:10px;">
+                                        <button value="保存"  class="text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに入れる</button>
+                                    </div>
                                 </div>
 
 
                                 <div class="text-right">
-                                    <button type="button" onclick="history.back()" class=" text-white bg-teal-500 border-0 py-2 px-6 ">Topに戻る</button>
+                                    <button type="button" onclick="history.back()" class=" text-white bg-teal-400 border-0 py-2 px-6 hover:bg-teal-600 rounded">一覧に戻る</button>
                                 </div>
                                 <br>
                                 <div class="text-right">
                                     <form method="get" action="{{ route('cart.index')}}" >
                                         @csrf
-                                        <button value=""  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに戻る</button>
+                                        <button value=""  class=" text-white bg-teal-400 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに戻る</button>
                                     </form>
                                 </div>
                             </div>
