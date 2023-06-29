@@ -9,7 +9,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="mb-8"></div>
-                    <form action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST">
+                    <form action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div>
@@ -35,7 +35,8 @@
 
                         <div>
                             <label for="filepass">画像:</label>
-                            <input type="image" name="filepass" id="filepass" value="{{ $product->filepass }}" required>
+                            <img src="{{ asset($product->filepass) }}" class="mb-46" width=200" height="200">
+                            <input type="file" name="img" id="img">
                         </div>
 
                         <div>
