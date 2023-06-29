@@ -31,7 +31,7 @@ Route::middleware('auth:admins')->group(function () {
     Route::post('/product', [AdminProductController::class,'store'])->name('product.store');
     Route::get('/product/create', [AdminProductController::class, 'create'])->name('product.create');
     Route::get('/product/{id}/show',[AdminProductController::class,'show'])->name('product.show');
-    Route::get('/product/{id}/edit', [AdminProductController::class,'edit'])->name('product.edit');
+    Route::post('/product/{id}/edit', [AdminProductController::class,'edit'])->name('product.edit');
     Route::post('/product/{id}',[AdminProductController::class,'update'])->name('product.update');
     Route::delete('/product/{id}', [AdminProductController::class,'destroy'])->name('product.destroy');
     Route::get('/product/analyze', [AdminProductController::class,'analyze'])->name('product.analyze');
