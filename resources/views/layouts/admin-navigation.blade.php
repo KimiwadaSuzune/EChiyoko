@@ -34,8 +34,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.product.analyze')" :active="request()->routeIs('product.index')">
-                        {{ __('売上グラフ') }}
+                    <x-nav-link :href="route('admin.product.analyze', ['where'=>'year'])" :active="request()->routeIs('product.index')">
+                        {{ __('売上グラフ(月別)') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.product.analyze', ['where'=>'month'])" :active="request()->routeIs('product.index')">
+                        {{ __('売上グラフ(日別)') }}
                     </x-nav-link>
                 </div>
             </div>

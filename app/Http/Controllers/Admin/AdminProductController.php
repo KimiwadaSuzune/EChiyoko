@@ -167,19 +167,31 @@ class AdminProductController extends Controller
     }
 
     public function analyze(Request $request){
+        $where = $request->route('where');
         $selectYear = $request->exist_year;
+        $selectMonth = $request->exist_month;
+
+        //最初のアクセス
         if (!isset($selectYear)) {
+
             $selectYear = History::select(DB::raw("DATE_FORMAT(purchased_at, '%Y') as year"))
             ->orderBy('year', 'desc')
             ->first()->year;
         }
 
-        $history = History::select(DB::raw("DATE_FORMAT(purchased_at, '%Y-%m') as yearMonth, sum(total_price) as totalPrice"))
-        ->groupBy('yearMonth')
-        ->orderBy('yearMonth', 'asc')
-        ->whereYear('purchased_at', $selectYear)
-        ->get();
+        if ($where == 'year') {
+            $history = History::select(DB::raw("DATE_FORMAT(purchased_at, '%Y-%m') as yearMonth, sum(total_price) as totalPrice"))
+            ->groupBy('yearMonth')
+            ->orderBy('yearMonth', 'asc');
+        } else if ($where == 'month'){
+            $history = History::select(DB::raw("DATE_FORMAT(purchased_at, '%d') as date, sum(total_price) as totalPrice"))
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->whereMonth('purchased_at', $selectMonth);
+        }
+        $history->whereYear('purchased_at', $selectYear)->get();
 
+        // 存在する年のリストを作成
         $existYear = History::select(DB::raw("DATE_FORMAT(purchased_at, '%Y') as year"))
         ->groupBy('year')
         ->orderBy('year', 'desc')
@@ -187,12 +199,24 @@ class AdminProductController extends Controller
         ->pluck('year')
         ->toArray();
 
-        $yearArray = $history->pluck('yearMonth')->toArray();
-        $salesArray = $history->pluck('totalPrice')->toArray();
+        if ($where == 'year'){
+            $dataArray = $history->pluck('yearMonth')->toArray();
+            $salesArray = $history->pluck('totalPrice')->toArray();
+        } else {
+            $dataArray = range(1, (int)(date('t', strtotime($selectYear . str_pad( $selectMonth, 2, 0, STR_PAD_LEFT) . '01'))));
+            $priceArray = $history->pluck('totalPrice')->toArray();
+            $dateArray = $history->pluck('date')->toArray();
+            for ($i = 1; $i < 31; $i++) {
+                $exist_key = array_search($i, $dateArray);
+                if ($exist_key !== false){
+                    $salesArray[] = (int)$priceArray[$exist_key];
+                } else {
+                    $salesArray[] = 0;
+                }
+            }
+        }
 
-        // dd($yearArray, $salesArray);
-
-        return view('admin.product.analyze', compact('selectYear', 'existYear', 'yearArray', 'salesArray'));
+        return view('admin.product.analyze', compact('where', 'selectYear','selectMonth', 'existYear', 'dataArray', 'salesArray'));
     }
 
 }

@@ -1,7 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            商品分析(全体)
+            @if ($where == 'month')
+                全商品売上グラフ(日別)
+            @else
+                全商品売上グラフ(月別)
+            @endif
+
         </h2>
     </x-slot>
 
@@ -9,12 +14,20 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 text-gray-900 text-center">
-    <form action="{{ route('admin.product.analyze')}}" method="get">
+    <form action="{{ route('admin.product.analyze', ['where' => $where])}}" method="get">
         <select name="exist_year">
             @foreach ($existYear as $year)
                 <option value="{{ $year }}" {{ $selectYear == $year ? 'selected' : '' }}>{{ $year }}</option>
             @endforeach
         </select>
+        @if($where == 'month')
+        <select name="exist_month">
+            @for ($i = 1; $i < 13; $i++)
+                <option value="{{ $i }}" {{ $selectMonth == $i ? 'selected' : '' }}>{{ $i }}</option>
+            @endfor
+        </select>
+        @endif
+
         <button type="submit" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">年のグラフを表示</button>
     </form>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -29,13 +42,13 @@
     <script>
         // phpの変数を jsの変数に置き換える必要がある
         const selectYear = <?php echo json_encode($selectYear); ?>;
-        const yearArray = <?php echo json_encode($yearArray); ?>;
+        const dataArray = <?php echo json_encode($dataArray); ?>;
         const salesArray = <?php echo json_encode($salesArray); ?>;
         const ctx = document.getElementById("allProduct").getContext("2d");
         const myChart = new Chart(ctx, {
         type: "line",
         data: {
-            labels: yearArray,
+            labels: dataArray,
             datasets: [
                 {
                     data: salesArray,
