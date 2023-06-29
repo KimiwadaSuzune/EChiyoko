@@ -42,7 +42,9 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-auto">
-                                    <x-primary-button type="submit" class="btn btn-primary " >検索</x-primary-button>
+                                    <x-primary-button type="submit" class="btn btn-primary">
+                                        <img src="/images/searchbtn.jpg" class="search-button" alt="検索" />
+                                    </x-primary-button>
                                 </div>
                             </div>
                         </div>
