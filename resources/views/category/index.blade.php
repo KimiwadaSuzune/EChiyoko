@@ -16,20 +16,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($categorys as $category)
                             <tr>
                                 <td class="py-2 text-center">
-                                    @foreach($categorys as $category)
-                                    {{ $category->name }}<br>
-                                    @endforeach
+                                    {{ $category->name }}
+                                    <br>
                                 </td>
-
                                 <td class="py-2 text-center">
-                                    @foreach($categorys as $category)
                                     <a href="{{ route('admin.category.edit', $category->id)}}" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
                                     <button>編集</button></a>
-                                    @endforeach
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
