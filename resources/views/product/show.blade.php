@@ -22,7 +22,7 @@
                                         @csrf
                                         <label for="amount">個数:</label>
                                         <select id="amount" name="amount">
-                                            @for ($i = 1; $i <= 100; $i++)
+                                            @for ($i = 1; $i <= $product->stock; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                         </select>
