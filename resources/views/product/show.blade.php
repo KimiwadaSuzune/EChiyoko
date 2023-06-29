@@ -20,6 +20,13 @@
                                 <div class="text-center mt-4">
                                     <form method="post" action="{{ route('cart.store', $product->id) }}" >
                                         @csrf
+                                        <label for="amount">個数:</label>
+                                        <select id="amount" name="amount">
+                                            @for ($i = 1; $i <= 100; $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                        <br>
                                         <button value="保存"  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カート挿入</button>
                                     </form>
                                 </div>
