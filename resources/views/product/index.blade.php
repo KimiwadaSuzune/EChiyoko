@@ -9,34 +9,44 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 text-center">
                 <form method="GET" action="{{ route("product.index")}}">
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">商品名</label>
-                        <!--入力-->
-                        <div class="col-sm-5">
-                        <input type="text" placeholder="キーワード検索" class="form-control" name="product_name">
+                    <section class="text-gray-600 body-font">
+                        <div class="container px-5 py-24 mx-auto">
+                            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+                                <div class="relative flex-grow w-full">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">商品名</label>
+                                        <!--入力-->
+                                        <div class="col-sm-5">
+                                            <input type="text" placeholder="キーワード検索" class="form-control" name="product_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="relative flex-grow w-full">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2">商品カテゴリ</label>
+                                        <div class="col-sm-3">
+                                            <select name="category" class="form-control">
+                                                <option value="">未選択</option>
+                                                    @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">
+                                                    {{ $category->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="relative flex-grow w-full">
+                                    <div class="form-group row">
+                                        <input type="checkbox" name="new" value="new">新着順
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <x-primary-button type="submit" class="btn btn-primary " >検索</x-primary-button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!--プルダウンカテゴリ選択-->
-                    <div class="form-group row">
-                        <label class="col-sm-2">商品カテゴリ</label>
-                        <div class="col-sm-3">
-                        <select name="category" class="form-control">
-                            <option value="">未選択</option>
-
-                            @foreach($categories as $category)
-                            <option value="{{ $category->id }}">
-                            {{ $category->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <input type="checkbox" name="new" value="new">新着順
-                    </div>
-                    <div class="col-sm-auto">
-                        <x-primary-button type="submit" class="btn btn-primary " >検索</x-primary-button>
-                    </div>
+                    </section>
                 </form>
             </div>
         </div>
