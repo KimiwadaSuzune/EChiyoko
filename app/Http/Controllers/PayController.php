@@ -68,7 +68,7 @@ class PayController extends Controller
                     DB::rollback();
 
                     // return redirect(route('pay.checkout'));
-             }
+            }
         }
         else{
             return redirect("product")->with('status', 'カートの中身が空です');

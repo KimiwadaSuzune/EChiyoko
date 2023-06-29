@@ -23,7 +23,6 @@
                             <tr>
                                 <td class="py-2 text-center">
                                     {{$product_data->name}}
-                                    {{$product_data->pivot->total_price}}
                                 </td>
 
                                 <td class="py-2 text-center">

@@ -4,6 +4,7 @@
             カート一覧
         </h2>
     </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -16,6 +17,7 @@
                                 <th class="py-2">数量</th>
                                 <th class="py-2">合計金額</th>
                                 <th class="py-2"></th>
+                                <th class="py-2"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -23,7 +25,6 @@
                                 <tr>
                                     <td class="py-2 text-center">
                                         {{ $product->name }}
-                                        {{-- {{var_dump($product)}} --}}
                                     </td>
 
                                     <td class="py-2 text-center">
@@ -31,7 +32,14 @@
                                     </td>
 
                                     <td class="py-2 text-center">
-                                            ¥{{ number_format($product->pivot->total_price) }}
+                                        ¥{{ number_format($product->pivot->total_price) }}
+                                    </td>
+
+                                    <td class="py-2 text-center">
+                                        <form method="get" action="{{ route('product.show', ['id' => $product->id]) }}">
+                                        @csrf
+                                            <button value="詳細" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">詳細</button>
+                                        </form>
                                     </td>
 
                                     <td class="py-2 text-center">
@@ -45,7 +53,6 @@
                             @endforeach
 
                             @if ($user->product->count() > 0)
-                            {{-- {{ var_dump($products)}} --}}
                             <td class="py-2 text-center">
                                 <a href="{{ route('pay.checkout') }}" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
                                     <button>購入</button>
