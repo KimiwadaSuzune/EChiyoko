@@ -13,7 +13,7 @@
                         <label class="col-sm-2 col-form-label">商品名</label>
                         <!--入力-->
                         <div class="col-sm-5">
-                        <input type="text" class="form-control" name="product_name">
+                        <input type="text" placeholder="キーワード検索" class="form-control" name="product_name">
                         </div>
                     </div>
                     <!--プルダウンカテゴリ選択-->
@@ -35,7 +35,7 @@
                         <input type="checkbox" name="new" value="new">新着順
                     </div>
                     <div class="col-sm-auto">
-                        <x-primary-button type="submit" class="btn btn-primary ">検索</x-primary-button>
+                        <x-primary-button type="submit" class="btn btn-primary " >検索</x-primary-button>
                     </div>
                 </form>
             </div>
