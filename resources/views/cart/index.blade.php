@@ -22,27 +22,27 @@
                         </thead>
                         <tbody>
                             @foreach($user->product as $product)
-                                <tr>
-                                    <td class="py-2 text-center">
+                                <tr class="cart">
+                                    <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172);">
                                         {{ $product->name }}
                                     </td>
 
-                                    <td class="py-2 text-center">
+                                    <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172);">
                                         {{ $product->pivot->amount}}
                                     </td>
 
-                                    <td class="py-2 text-center">
+                                    <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172);">
                                         ¥{{ number_format($product->pivot->total_price) }}
                                     </td>
 
-                                    <td class="py-2 text-center">
+                                    <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172);">
                                         <form method="get" action="{{ route('product.show', ['id' => $product->id]) }}">
                                         @csrf
                                             <button value="詳細" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">詳細</button>
                                         </form>
                                     </td>
 
-                                    <td class="py-2 text-center">
+                                    <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172);">
                                         <form method="post" action="{{ route("cart.destroy", $product->pivot->id)}}">
                                             @csrf
                                             @method("DELETE")
