@@ -128,7 +128,7 @@ class AdminProductController extends Controller
             // 'stock' => ['required'],
             // 'enabled' => ['required', 'boolean'],
             // 'category_id' => ['required'],
-            'img' => ['required', 'max:2048', 'mimes:jpg,jpeg,png,gif']
+            'img' => ['max:2048', 'mimes:jpg,jpeg,png,gif']
         ]);
 
         $img_request = $request->img;
