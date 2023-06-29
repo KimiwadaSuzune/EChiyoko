@@ -58,6 +58,12 @@
                                     <button>購入</button>
                                 </a>
                             </td>
+                            @else
+                                <div class="text-center">
+                                    <td>
+                                        商品がありません
+                                    </td>
+                                </div>
                             @endif
 
                         </tbody>
