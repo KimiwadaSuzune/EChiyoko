@@ -28,21 +28,16 @@
                         {{ __('商品登録') }}
                     </x-nav-link>
                 </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.category.index')" :active="request()->routeIs('product.index')">
-                        {{ __('カテゴリ一覧') }}
-                    </x-nav-link>
-                </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.category.create')" :active="request()->routeIs('product.index')">
                         {{ __('カテゴリ登録') }}
                     </x-nav-link>
                 </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.category.edit')" :active="request()->routeIs('product.index')">
-                        {{ __('カテゴリ編集') }}
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.product.analyze')" :active="request()->routeIs('product.index')">
+                        {{ __('売上グラフ') }}
                     </x-nav-link>
-                </div> --}}
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

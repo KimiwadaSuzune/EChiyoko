@@ -15,7 +15,7 @@
                 <option value="{{ $year }}" {{ $selectYear == $year ? 'selected' : '' }}>{{ $year }}</option>
             @endforeach
         </select>
-        <button type="submit">年のグラフを表示</button>
+        <button type="submit" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">年のグラフを表示</button>
     </form>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <canvas id="allProduct"></canvas>
