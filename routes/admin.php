@@ -34,6 +34,7 @@ Route::middleware('auth:admins')->group(function () {
     Route::get('/product/{id}/edit', [AdminProductController::class,'edit'])->name('product.edit');
     Route::post('/product/{id}',[AdminProductController::class,'update'])->name('product.update');
     Route::delete('/product/{id}', [AdminProductController::class,'destroy'])->name('product.destroy');
+    Route::get('/product/analyze', [AdminProductController::class,'analyze'])->name('product.analyze');
 });
 
 require __DIR__.'/adminAuth.php';

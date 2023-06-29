@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\History;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdminProductController extends Controller
 {
@@ -65,17 +68,6 @@ class AdminProductController extends Controller
         return view('admin.product.show', compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    // public function edit(string $id)
-    // {
-    //     $product = Product::findOrFail($id);
-    //     $categories = Category::pluck('name', 'id');
-
-    //     return view('admin.product.edit', compact('product', 'categories'));
-    // }
-
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
@@ -108,11 +100,40 @@ class AdminProductController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-{
-    $product = Product::findOrFail($id);
-    $product->destroy($id);
+    {
+        $product = Product::findOrFail($id);
+        $product->destroy($id);
 
-    return redirect()->route('admin.product.index');
-}
+        return redirect()->route('admin.product.index');
+    }
+
+    public function analyze(Request $request){
+        $selectYear = $request->exist_year;
+        if (!isset($selectYear)) {
+            $selectYear = History::select(DB::raw("DATE_FORMAT(purchased_at, '%Y') as year"))
+            ->orderBy('year', 'desc')
+            ->first()->year;
+        }
+
+        $history = History::select(DB::raw("DATE_FORMAT(purchased_at, '%Y-%m') as yearMonth, sum(total_price) as totalPrice"))
+        ->groupBy('yearMonth')
+        ->orderBy('yearMonth', 'asc')
+        ->whereYear('purchased_at', $selectYear)
+        ->get();
+
+        $existYear = History::select(DB::raw("DATE_FORMAT(purchased_at, '%Y') as year"))
+        ->groupBy('year')
+        ->orderBy('year', 'desc')
+        ->get()
+        ->pluck('year')
+        ->toArray();
+
+        $yearArray = $history->pluck('yearMonth')->toArray();
+        $salesArray = $history->pluck('totalPrice')->toArray();
+
+        // dd($yearArray, $salesArray);
+
+        return view('admin.product.analyze', compact('selectYear', 'existYear', 'yearArray', 'salesArray'));
+    }
 
 }
