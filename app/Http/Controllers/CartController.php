@@ -34,7 +34,7 @@ class CartController extends Controller
         $cart->user_id = Auth::id();
         $cart->product_id = $id;
         $cart->amount = $request->input('amount');
-        $cart->total_price = $product->price;
+        $cart->total_price = $cart->amount * $product->price;
         $cart->save();
 
         return redirect('/cart');
