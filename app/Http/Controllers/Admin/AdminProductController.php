@@ -128,7 +128,7 @@ class AdminProductController extends Controller
             // 'stock' => ['required'],
             // 'enabled' => ['required', 'boolean'],
             // 'category_id' => ['required'],
-            'img' => ['required', 'max:2048', 'mimes:jpg,jpeg,png,gif']
+            'img' => ['max:2048', 'mimes:jpg,jpeg,png,gif']
         ]);
 
         $img_request = $request->img;
@@ -158,6 +158,9 @@ class AdminProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        if ($product->filepass){
+            Storage::disk('public')->delete($product->filepass);
+        }
         $product->destroy($id);
 
         return redirect()->route('admin.product.index');
