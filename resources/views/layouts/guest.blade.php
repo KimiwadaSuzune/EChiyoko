@@ -17,8 +17,12 @@
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
+                @if(request()->is('admin*'))
+                <a href="/admin">
+                @else
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                @endif
+                    <img src="{{ asset('images/workingpiyo.png') }}" width="50" height="50" alt="Logo">
                 </a>
             </div>
 
