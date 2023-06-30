@@ -18,7 +18,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="category_id" class="block font-medium text-gray-700">商品名:</label>
-                            <input type="text" id="name" name="name" value="{{ $product->name }}" class="form-input rounded-md shadow-sm" required>
+                            <input type="text" id="name" name="name" value="{{ $product->name }}" class="form-input rounded-md shadow-sm" placeholder="商品名を入力してください" required>
                         </div>
                         <div class="mb-4">
                             <label for="price" class="block font-medium text-gray-700">金額:</label>
@@ -28,10 +28,9 @@
                             <label for="stock" class="block font-medium text-gray-700">在庫:</label>
                             <input type="number" name="stock" id="stock" value="{{ $product->stock }}" class="form-input rounded-md shadow-sm" min="1" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 flex items-center">
                             <label for="enabled" class="block font-medium text-gray-700">表示する:</label>
-                            <input type="checkbox" name="enabled" id="enabled" value="1" class="form-input rounded-md shadow-sm" {{ $product->enabled ? 'checked="checked"' : '' }}>
-
+                            <input type="checkbox" name="enabled" id="enabled" value="1" class="form-input rounded-md shadow-sm m-2" {{ $product->enabled ? 'checked="checked"' : '' }}>
                         </div>
                         <div class="mb-4">
                             <label for="category_id" class="block font-medium text-gray-700">カテゴリー:</label>
