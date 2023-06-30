@@ -13,16 +13,31 @@
                         </div>
                     {{-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"> --}}
                         <div>
-                            <img src="{{ asset($product->filepass) }}" class="mx-auto mb-46" width=300" height="300">
+                            @if ($product->filepass)
+                                <img src="{{ asset($product->filepass) }}" alt="{{ $product->name }}"  class="mx-auto mb-46" width=300" height="300">
+                            @else
+                                <img src="{{ asset('images/noImage.jpg') }}"  class="mx-auto mb-46" width=300" height="300" alt="noImages">
+                            @endif
                             <div class="text-center">
                                 <p class="py-2 text-center">商品名:{{ $product->name }}</p>
-                                <p class="py-2 text-center">カテゴリ:{{ $product->category->name }}</p>
+                                @if ($product->category)
+                                    <p class="py-2 text-center">カテゴリ:{{ $product->category->name }}</p>
+                                @else
+                                    <p class="py-2 text-center">カテゴリ:なし</p>
+                                @endif
                                 <p class="py-2 text-center">価格:¥{{ number_format($product->price) }}</p>
                                 @if($product->enabled)
                                     <p class="py-2 text-center">表示・非表示：表示</p>
                                 @else
-                                    <p>表示・非表示：非表示</p>
+                                    <p class="py-2 text-center">表示・非表示：非表示</p>
                                 @endif
+
+                                @if ($product->stock > 0)
+                                    <p class="py-2 text-center">在庫数：{{ number_format($product->stock) }}</p>
+                                @else
+                                    <p class="py-2 text-center text-red-500">売り切れ</p>
+                                @endif
+
                                 <div class="text-right">
                                     <button type="button" onclick="history.back()" class=" text-white bg-teal-500 border-0 py-2 px-6 ">戻る</button>
                                 </div>

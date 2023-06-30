@@ -34,7 +34,7 @@ class PayController extends Controller
                     // attach('相手のID',[中間テーブルに保存したい他の情報]
                     // 1.CartのデータをHistoryに保存
                 foreach( $user->product as $product ){
-                    if($product->stock - $product->pivot->amount > 0){
+                    if($product->stock - $product->pivot->amount >= 0){
                         $user->product_history()->attach($product->id,[
                         'amount' => $product->pivot->amount,
                         'purchased_at' =>Carbon::now(),

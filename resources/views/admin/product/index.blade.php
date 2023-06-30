@@ -25,7 +25,11 @@
                                                 @endif
                                                 <p class="text-sm">{{ $product->name }}</p>
                                                 <p class="text-sm">¥{{ number_format($product->price) }}</p>
-                                                <p class="text-sm">在庫数：{{ number_format($product->stock) }}</p>
+                                                @if ($product->stock > 0)
+                                                    <p class="text-sm">在庫数：{{ number_format($product->stock) }}</p>
+                                                @else
+                                                    <p class="text-sm text-red-500">売り切れ</p>
+                                                @endif
                                                 {{-- <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}"class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                                     編集
                                                 </a> --}}

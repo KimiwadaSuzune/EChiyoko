@@ -144,6 +144,8 @@ class AdminProductController extends Controller
                 // 選択された画像ファイルを保存してパスをセット
                 $img = $img_request->store('img', 'public');
             }
+        } else {
+            $img = $img;
         }
 
         if ($request->enabled) {

@@ -13,10 +13,20 @@
                         </div>
                         <div>
                             <div class="text-center">
+                                @if ($product->filepass)
+                                    <img src="{{ asset($product->filepass) }}" alt="{{ $product->name }}"  class="mx-auto mb-46" width=300" height="300">
+                                @else
+                                    <img src="{{ asset('images/noImage.jpg') }}"  class="mx-auto mb-46" width=300" height="300" alt="noImages">
+                                @endif
                                 <p class="py-2 text-center">商品名:{{ $product->name }}</p>
-                                <p class="py-2 text-center">カテゴリ:{{ $product->category->name }}</p>
+                                @if ($product->category)
+                                    <p class="py-2 text-center">カテゴリ:{{ $product->category->name }}</p>
+                                @else
+                                <p class="py-2 text-center">カテゴリ:なし</p>
+                                @endif
                                 <p class="py-2 text-center">価格：¥{{ number_format($product->price) }}</p>
                                 <div class="text-center mt-4">
+                                    @if ($product->stock > 0)
                                     <form method="post" action="{{ route('cart.store', $product->id) }}" >
                                         @csrf
                                         <label for="amount">個数:</label>
@@ -30,7 +40,9 @@
                                             <button type="submit" class="text-white bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-500 rounded">カートに入れる</button>
                                         </div>
                                     </form>
-
+                                    @else
+                                    <p class="py-2 text-center text-red-500">売り切れ</p>
+                                    @endif
                                 </div>
 
 
