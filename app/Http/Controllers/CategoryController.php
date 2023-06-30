@@ -40,7 +40,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect('admin/category')->with('successMessage', '問題なく送信されました');;
+        return redirect('admin/category')->with('successMessage', '問題なく登録されました');;
     }
 
     /**

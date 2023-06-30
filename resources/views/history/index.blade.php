@@ -15,7 +15,7 @@
                                 <th class="py-2">商品名</th>
                                 <th class="py-2">数量</th>
                                 <th class="py-2">合計金額</th>
-                                <th class="py-2">購入日時</th>
+                                <th class="py-2">購入日</th>
                             </tr>
                         </thead>
                         <tbody>
