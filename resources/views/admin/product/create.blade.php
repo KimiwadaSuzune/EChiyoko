@@ -24,7 +24,7 @@
                     <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <td class="py-2">
-                            <input type="file" name="img" id="img" required>
+                            <input type="file" name="img" id="img">
                         </td>
 
                         <td class="py-2">
@@ -40,7 +40,7 @@
                         </td>
 
                         <td class="py-2 flex justify-center">
-                            <input type="checkbox" name="enabled" id="enabled" value="1" {{ old('enabled') ? 'checked="checked"' : '' }}>
+                            <input type="checkbox" name="enabled" id="enabled">
                         </td>
 
                         <td class="py-2">
@@ -56,6 +56,9 @@
                             <button type="submit" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">商品を保存</button>
                         </td>
                     </form>
+                    @foreach ($errors->all() as $error)
+                    <span class="error">{{ $error }}</span>
+                    @endforeach
                 </tbody>
                 </table>
                 </div>

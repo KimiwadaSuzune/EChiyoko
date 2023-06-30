@@ -37,22 +37,29 @@ class AdminProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'name' => ['required', 'min:2', 'max:50'],
-            // 'price' => ['required'],
-            // 'stock' => ['required'],
+            'name' => ['required', 'min:2', 'max:50'],
+            'price' => ['required'],
+            'stock' => ['required'],
             // 'enabled' => ['required', 'boolean'],
-            // 'category_id' => ['required'],
-            'img' => ['required', 'max:2048', 'mimes:jpg,jpeg,png,gif']
+            'category_id' => ['required'],
+            'img' => ['max:2048', 'mimes:jpg,jpeg,png,gif']
         ]);
-
-        $img = $request->img->store('img', 'public');
-
+        if ($request->img){
+            $img = $request->img->store('img', 'public');
+        } else {
+            $img = '';
+        }
+        if ($request->enabled) {
+            $enabled = 1;
+        } else {
+            $enabled = 0;
+        }
         $product = new Product;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->filepass = $img;
-        $product->enabled = $request->enabled;
+        $product->enabled = $enabled;
         $product->category_id = $request->category_id;
         $product->save();
 
