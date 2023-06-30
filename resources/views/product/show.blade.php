@@ -12,7 +12,7 @@
                             <h1 class="text-lg font-semibold mb-4 text-center">商品詳細</h1>
                         </div>
                         <div>
-                            <img src="{{ asset($product->filepass) }}" class="mx-auto mb-46>
+                            <img src="{{ asset($product->filepass) }}" class="mx-auto mb-46" width="400" height="400">
                             <div class="text-center">
                                 <p class="py-2 text-center">商品名:{{ $product->name }}</p>
                                 <p class="py-2 text-center">カテゴリ:{{ $product->category->name }}</p>
