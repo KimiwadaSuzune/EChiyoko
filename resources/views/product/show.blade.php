@@ -42,7 +42,7 @@
                                 <div class="text-right">
                                     <form method="get" action="{{ route('cart.index')}}" >
                                         @csrf
-                                        <button value=""  class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに戻る</button>
+                                        <button value="submit" class="text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カートに戻る</button>
                                     </form>
                                 </div>
                             </div>
