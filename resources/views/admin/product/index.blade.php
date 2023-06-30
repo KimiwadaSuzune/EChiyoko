@@ -30,14 +30,14 @@
                                                         <div>
                                                             <form id="edit-form" action="{{ route('admin.product.edit', ['id' => $product->id]) }}" method="GET">
                                                                 @csrf
-                                                                <button type="submit" class="text-white bg-teal-500 border-0 py-2 px-6 hover:bg-teal-600 rounded">編集</button>
+                                                                <button type="submit" class="text-white bg-teal-500 border-0 py-2 px-6 hover:bg-teal-600 rounded m-2">編集</button>
                                                             </form>
                                                         </div>
                                                         <div>
                                                             <form id="delete-form" action="{{ route('admin.product.destroy', ['id' => $product->id]) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" onclick="return confirm('本当に削除しますか？')" class="text-white bg-teal-500 border-0 py-2 px-6 hover:bg-teal-600 rounded">削除</button>
+                                                                <button type="submit" onclick="return confirm('本当に削除しますか？')" class="text-white bg-gray-500 border-0 py-2 px-6 hover:bg-gray-600 rounded m-2">削除</button>
                                                             </form>
                                                         </div>
                                                     </div>
