@@ -10,13 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div>
-                        <div class="mb-3">
-                            <label for="category" class="block font-medium text-gray-700">カテゴリ名</label>
-                            <input type="text" id="name" name="name" value="{{ $category->name }}" class="form-input rounded-md shadow-sm">
-                        </div>
                         <div class="text-left mt-2">
                             <form method="post" action="{{ route('admin.category.update', $category->id) }}" class="inline-block">
                                 @csrf
+                                <div class="mb-3">
+                                    <label for="category" class="block font-medium text-gray-700">カテゴリ名</label>
+                                    <input type="text" id="name" name="name" value="{{ $category->name }}" class="form-input rounded-md shadow-sm">
+                                </div>
                                 <input type="submit" value="カテゴリ名を更新" class="text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
                             </form>
                             <form method="post" action="{{ route('admin.category.destroy', $category->id) }}" class="inline-block">
