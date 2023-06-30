@@ -28,6 +28,19 @@
                                 </td>
                             </tr>
                             @endforeach
+
+                            @if (session('successMessage'))
+                            <div class="alert alert-success text-center">
+                                {{ session('successMessage') }}
+                            @endif
+                            </div>
+
+                            @if (session('status'))
+                                <div class="alert alert-success text-center">
+                                    {{ session('status') }}
+                            @endif
+                                </div>
+                                
                         </tbody>
                     </table>
                 </div>
