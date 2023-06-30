@@ -13,11 +13,11 @@
                         </div>
                     {{-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"> --}}
                         <div>
-                            <img src="{{ asset($product->filepass) }}" class="mx-auto mb-46">
+                            <img src="{{ asset($product->filepass) }}" class="mx-auto mb-46" width=300" height="300">
                             <div class="text-center">
                                 <p class="py-2 text-center">商品名:{{ $product->name }}</p>
                                 <p class="py-2 text-center">カテゴリ:{{ $product->category->name }}</p>
-                                <p class="py-2 text-center">価格：¥{{ number_format($product->price) }}</p>
+                                <p class="py-2 text-center">価格:¥{{ number_format($product->price) }}</p>
                                 @if($product->enabled)
                                     <p class="py-2 text-center">表示・非表示：表示</p>
                                 @else

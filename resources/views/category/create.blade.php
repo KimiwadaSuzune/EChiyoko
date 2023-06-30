@@ -10,7 +10,7 @@
                 <div class="p-6 text-gray-900">
                     <form method="post" action="{{ route("admin.category.store")}}">
                         <div>
-                            <label class="block font-medium text-gray-700">新規カテゴリ名:</label>
+                            <label class="block font-medium text-gray-700">新規カテゴリ名</label>
                             <input type="text" id="name" name="name" value="{{ old('name')}}" class="form-input rounded-md shadow-sm mt-2 mb-1" placeholder="カテゴリ名を入力">
                         </div>
                         <div class="text-left mt-2">
