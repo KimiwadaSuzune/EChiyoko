@@ -130,20 +130,26 @@ class AdminProductController extends Controller
         $img = Product::find($id)->filepass;
 
         $request->validate([
-            // 'name' => ['required', 'min:2', 'max:50'],
-            // 'price' => ['required'],
-            // 'stock' => ['required'],
-            // 'enabled' => ['required', 'boolean'],
-            // 'category_id' => ['required'],
+            'name' => ['required', 'min:2', 'max:50'],
+            'price' => ['required'],
+            'stock' => ['required'],
+            'category_id' => ['required'],
             'img' => ['max:2048', 'mimes:jpg,jpeg,png,gif']
         ]);
+        if ($request->img){
+            $img_request = $request->img;
+            if (isset($img_request)) {
+                // 現在の画像ファイルの削除
+                Storage::disk('public')->delete($img);
+                // 選択された画像ファイルを保存してパスをセット
+                $img = $img_request->store('img', 'public');
+            }
+        }
 
-        $img_request = $request->img;
-        if (isset($img_request)) {
-            // 現在の画像ファイルの削除
-            Storage::disk('public')->delete($img);
-            // 選択された画像ファイルを保存してパスをセット
-            $img = $img_request->store('img', 'public');
+        if ($request->enabled) {
+            $enabled = 1;
+        } else {
+            $enabled = 0;
         }
 
         $product = Product::findOrFail($id);
@@ -151,7 +157,7 @@ class AdminProductController extends Controller
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->filepass = $img;
-        $product->enabled = $request->enabled;
+        $product->enabled = $enabled;
         $product->category_id = $request->category_id;
         $product->save();
 
