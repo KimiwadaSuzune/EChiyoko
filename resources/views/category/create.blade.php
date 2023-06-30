@@ -10,12 +10,12 @@
                 <div class="p-6 text-gray-900">
                     <form method="post" action="{{ route("admin.category.store")}}">
                         <div>
-                            <label>カテゴリ名</label>
-                            <input type="text" id="name" name="name" value="{{ old('name')}}">
+                            <label class="block font-medium text-gray-700">新規カテゴリ名</label>
+                            <input type="text" id="name" name="name" value="{{ old('name')}}" class="form-input rounded-md shadow-sm ">
                         </div>
-                        <div class="text-right">
+                        <div class="text-left mt-2">
                             @csrf
-                            <button type="submit" name="送信" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">登録</button>
+                            <button type="submit" name="送信" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">カテゴリを登録</button>
                         </div>
                     </form>
                     @foreach ($errors->all() as $error)

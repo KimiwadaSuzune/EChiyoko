@@ -16,21 +16,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="py-2 text-center">
-                                    @foreach($categorys as $category)
-                                    {{ $category->name }}<br>
-                                    @endforeach
-                                </td>
+                            @foreach($categorys as $category)
+                                <tr>
+                                    <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172);">
+                                        {{ $category->name }}
+                                    </td>
 
-                                <td class="py-2 text-center">
-                                    @foreach($categorys as $category)
-                                    <a href="{{ route('admin.category.edit', $category->id)}}" class=" text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
-                                    <button>編集</button></a>
-                                    @endforeach
-                                </td>
-                            </tr>
+                                    <td class="py-2 text-center" style="border-bottom: 1px solid rgb(172, 172, 172);">
+                                        <a href="{{ route('admin.category.edit', $category->id)}}" class="text-white bg-teal-500 border-0 py-2 px-6 focus:outline-none hover:bg-teal-600 rounded">
+                                            編集
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td> <!-- 空白行 -->
+                                </tr>
+                            @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>
